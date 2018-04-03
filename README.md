@@ -12,6 +12,8 @@ Currently this is WIP, I hope to finish the base version by end of april.
 >This is not ready, this is just initial commit.
 
 
+![Alt text](screenshots/Screenshot_2018-04-04_00-19-08.png?raw=true "Task bar")
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
 
