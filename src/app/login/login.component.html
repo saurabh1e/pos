@@ -1,0 +1,48 @@
+<div layout="column" layout-fill class="login-bg">
+  <div layout-gt-xs="row" layout-align-gt-xs="center start" class="margin">
+    <div flex-gt-xs="50">
+      <mat-card tdMediaToggle="gt-xs" layout="column">
+        <span flex="100" layout-align="center center" layout="row"></span>
+        <mat-card-title flex="100" layout-align="center center" layout="row"> Login</mat-card-title>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+          <form #loginForm="ngForm">
+            <div layout="row">
+              <mat-input-container flex>
+                <input matInput #userElement #userControl="ngModel" placeholder="Username" type="text"
+                       maxlength="30" name="username" [(ngModel)]="username" required>
+                <span matPrefix=""><mat-icon>person</mat-icon></span>
+                <mat-hint align="start">
+                  <span [hidden]="!userControl.errors?.required || userControl.pristine"
+                        class="tc-red-600">Required</span>
+                </mat-hint>
+              </mat-input-container>
+            </div>
+            <div layout="row" class="push-top-sm">
+              <mat-input-container flex>
+                <input matInput #passElement #passControl="ngModel" placeholder="Password" type="password"
+                       name="password" [(ngModel)]="password" required>
+                <span matPrefix=""><mat-icon>lock</mat-icon></span>
+                <mat-hint align="start">
+                  <span [hidden]="!passControl.errors?.required || passControl.pristine"
+                        class="tc-red-600">Required</span>
+                </mat-hint>
+
+              </mat-input-container>
+            </div>
+          </form>
+        </mat-card-content>
+        <mat-divider></mat-divider>
+        <mat-card-actions>
+          <div layout="row" layout-align="end end">
+            <button flex mat-raised-button color="accent" [disabled]="!loginForm.form.valid" (click)="login()">
+              Sign
+              In
+            </button>
+          </div>
+
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

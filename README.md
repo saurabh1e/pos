@@ -1,4 +1,17 @@
-# Posify
+# POS
+
+
+>This is updated version of https://github.com/saurabh1e/open-pos
+
+
+This software is designed keeping in mind pharmacies in India, but can be used at other 
+retail business with some modifications.
+
+Currently this is WIP, I hope to finish the base version by end of april.
+
+>This is not ready, this is just initial commit.
+
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
 
@@ -25,3 +38,5 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+

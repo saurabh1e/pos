@@ -1,0 +1,29 @@
+<td-layout>
+  <td-navigation-drawer flex sidenavTitle="POS" logo="assets:" name="Firstname Lastname"
+                        email="firstname.lastname@company.com">
+    <mat-nav-list>
+      <a mat-list-item>
+        <mat-icon>location</mat-icon>
+        title</a>
+    </mat-nav-list>
+    <div td-navigation-drawer-menu>
+      <mat-nav-list>
+        <a mat-list-item>
+          <mat-icon></mat-icon>
+          title</a>
+      </mat-nav-list>
+    </div>
+  </td-navigation-drawer>
+  <td-layout-nav color="primary">
+    <div td-toolbar-content layout="row" layout-align="start center" flex>
+      <button mat-icon-button td-menu-button tdLayoutToggle>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <!--<mat-icon [routerLink]="['/']" class="mat-icon-logo cursor-pointer" svgIcon="assets:"></mat-icon>-->
+      <span [routerLink]="['/']" class="cursor-pointer">POS</span>
+      <span flex></span>
+
+    </div>
+    <router-outlet></router-outlet>
+  </td-layout-nav>
+</td-layout>

@@ -1,0 +1,45 @@
+<div layout="column">
+  <app-product-search (addToCart)="addToCart($event)"></app-product-search>
+  <div class="fix-height">
+    <ng-container *ngFor="let item of _cart.cart?.items; let i = index">
+
+      <div layout="row" layout-align="start" class="push-bottom mat-shadow-bottom-z-1">
+        <div class="pad border-right bgc-white-4 product-box tc-grey-500"
+             flex="5"
+             layout="column" layout-align="center center">
+          {{i + 1}}
+        </div>
+
+        <div flex class="pad border-right bgc-white-4 product-box" layout-align="center" layout="column">
+        <span class="push-bottom-xs">
+        {{item.name}}
+        </span>
+
+          <span class="tc-grey-500 mat-caption">BATCH: {{item.stock.batch_number}}</span>
+          <span class="tc-grey-500 mat-caption">EXPIRY: {{item.stock.expiry_date | date: 'shortDate'}}</span>
+        </div>
+
+        <div flex="30" class="pad-right-sm pad-left-sm border-right product-box bgc-white-4"
+             layout-align="center center" layout="row">
+          <button mat-raised-button color="accent" class="push-right-md btn-sm">
+            <mat-icon>remove</mat-icon>
+          </button>
+          <span class="push-right-md">
+            {{item.quantity}}
+            </span>
+
+          <button mat-raised-button color="accent" class="btn-sm">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+
+        <div flex="25" layout="row" layout-align="center center"
+             class="pad-right-sm pad-left-sm border-right product-box bgc-white-4">
+          <input [value]="item.unit_price" class="input-box">
+        </div>
+
+      </div>
+    </ng-container>
+  </div>
+
+</div>

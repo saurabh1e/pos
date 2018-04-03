@@ -1,0 +1,14 @@
+<div layout="column">
+  <mat-form-field floatPlaceholder="never">
+    <input placeholder="Search" aria-label="search" [matAutocomplete]="auto"
+           [formControl]="searchCtrl" matInput>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="addProduct($event)"
+    >
+      <mat-option *ngFor="let product of (filteredProducts | async)" [value]="product"
+      >
+        <span>{{ product.name }}</span>
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+</div>

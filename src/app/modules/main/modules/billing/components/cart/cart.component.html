@@ -1,0 +1,15 @@
+<div layout="column" style="position: relative">
+  <mat-icon class="bgc-pink-500 tc-white-4 border-16 pad-xs" style="position: absolute;top:-32px">shopping_cart
+  </mat-icon>
+  <div class="tc-pink-500 mat-caption text-bold">Order Info</div>
+  <div class="mat-xs tc-grey-600">{{_cart?.cart.items.length || 0}} products in cart</div>
+  <div class="push-top-xl">
+    <span class="mat-caption">Sale Total:</span>
+    <div class="mat-display-2 push-bottom-xl">{{_cart?.cart?.total | currency : 'INR':'symbol':'2.2-2'}}</div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="push-top" align="center">
+    <button mat-button class="btn-box border-16 push-right tc-grey-600" color="grey">CANCEL</button>
+    <button mat-button class="btn-box border-16" color="accent">CHECKOUT</button>
+  </div>
+</div>

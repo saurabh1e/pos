@@ -1,0 +1,18 @@
+<div layout="row" layout-wrap>
+  <ng-container *ngFor="let store of stores$|async">
+    <mat-card flex="33">
+      <mat-card-title-group>
+        <mat-card-title>{{store.name}}</mat-card-title>
+        <mat-card-subtitle>{{store.identity}}</mat-card-subtitle>
+        <div mat-card-sm-image="" class="pad-top pad-right" align="end">
+          <mat-slide-toggle color="primary"></mat-slide-toggle>
+        </div>
+
+      </mat-card-title-group>
+      <mat-divider></mat-divider>
+      <mat-card-actions align="end">
+        <button color="primary" mat-raised-button [routerLink]="['/billing']">BILLING</button>
+      </mat-card-actions>
+    </mat-card>
+  </ng-container>
+</div>
