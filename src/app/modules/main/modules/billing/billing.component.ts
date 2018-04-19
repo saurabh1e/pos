@@ -8,9 +8,11 @@ import {Component, OnInit} from '@angular/core';
 export class BillingComponent implements OnInit {
 
   constructor() {
+
   }
 
   ngOnInit() {
+
   }
 
 }

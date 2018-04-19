@@ -2,14 +2,23 @@
   <mat-icon class="bgc-pink-500 tc-white-4 border-16 pad-xs" style="position: absolute;top:-32px">shopping_cart
   </mat-icon>
   <div class="tc-pink-500 mat-caption text-bold">Order Info</div>
-  <div class="mat-xs tc-grey-600">{{_cart?.cart.items.length || 0}} products in cart</div>
+  <div class="mat-xs tc-grey-600">{{cart?.items?.length || 0}} products in cart</div>
   <div class="push-top-xl">
     <span class="mat-caption">Sale Total:</span>
-    <div class="mat-display-2 push-bottom-xl">{{_cart?.cart?.total | currency : 'INR':'symbol':'2.2-2'}}</div>
+    <div class="mat-display-2 push-bottom-xl">{{cart?.total | currency : 'INR':'symbol':'2.2-2'}}</div>
   </div>
   <mat-divider></mat-divider>
   <div class="push-top" align="center">
-    <button mat-button class="btn-box border-16 push-right tc-grey-600" color="grey">CANCEL</button>
-    <button mat-button class="btn-box border-16" color="accent">CHECKOUT</button>
+    <app-print-bill [cart]="cart" #print class="mat-visually-hidden"></app-print-bill>
+    <button mat-button class="btn-box border-16 push-right tc-grey-600" [routerLink]="['/']" color="grey">CANCEL
+    </button>
+    <button mat-button class="btn-box border-16 push-right" color="accent" [disabled]="!cart?.items?.length"
+            (click)="checkout()">CHECKOUT
+    </button>
+    <button mat-button class="btn-box border-16 tc-grey-600" [disabled]="!cart?.items?.length"
+            (click)="draft()">DRAFT
+    </button>
   </div>
 </div>
+
+

@@ -1,5 +1,5 @@
 <div layout="column">
-  <app-product-search (addToCart)="addToCart($event)"></app-product-search>
+  <app-product-search (onSelection)="addToCart($event)"></app-product-search>
   <div class="fix-height">
     <ng-container *ngFor="let item of _cart.cart?.items; let i = index">
 
@@ -21,22 +21,28 @@
 
         <div flex="30" class="pad-right-sm pad-left-sm border-right product-box bgc-white-4"
              layout-align="center center" layout="row">
-          <button mat-raised-button color="accent" class="push-right-md btn-sm">
+          <button mat-raised-button color="accent" class="push-right-md btn-sm"
+                  (click)="updateQuantity(item, -1)">
             <mat-icon>remove</mat-icon>
           </button>
           <span class="push-right-md">
             {{item.quantity}}
             </span>
 
-          <button mat-raised-button color="accent" class="btn-sm">
+          <button mat-raised-button color="accent" class="btn-sm" (click)="updateQuantity(item, 1)">
             <mat-icon>add</mat-icon>
           </button>
         </div>
 
-        <div flex="25" layout="row" layout-align="center center"
+        <div flex="25" layout="column" layout-align="center center"
              class="pad-right-sm pad-left-sm border-right product-box bgc-white-4">
-          <input [value]="item.unit_price" class="input-box">
+          <input [(ngModel)]="item.unit_price" class="input-box push-bottom" (ngModelChange)="updateItem(item)">
+
+          <mat-checkbox [checked]="item.stock_adjust" (change)="changeStock($event, item)" class="mat-caption">
+            Adjust Stock?
+          </mat-checkbox>
         </div>
+
 
       </div>
     </ng-container>

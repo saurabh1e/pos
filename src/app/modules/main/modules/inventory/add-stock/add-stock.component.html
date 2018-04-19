@@ -1,0 +1,31 @@
+<h3 matDialogTitle>Add Stock</h3>
+
+<mat-dialog-content>
+  <form #stockForm="ngForm" layout="column">
+    <mat-form-field>
+      <input type="number" min="1" [required]="true" name="qty" matInput placeholder="Stock Received"
+             [(ngModel)]="stock.units_purchased">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" min="5" [required]="true" name="batch" matInput placeholder="Batch Number"
+             [(ngModel)]="stock.batch_number">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="date" [required]="true" name="expiry" matInput placeholder="Expiry Date"
+             [(ngModel)]="stock.expiry_date">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="number" min="0" [required]="true" name="selling" matInput placeholder="Selling"
+             [(ngModel)]="stock.selling_amount">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="number" min="0" [required]="true" name="purchasing" matInput placeholder="Purchase"
+             [(ngModel)]="stock.purchase_amount">
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close color="warn">CANCEL</button>
+  <button mat-button color="primary" [disabled]="stockForm.form.invalid" (click)="addStock()">SAVE</button>
+</mat-dialog-actions>

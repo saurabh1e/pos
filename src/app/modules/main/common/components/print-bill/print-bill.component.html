@@ -1,0 +1,143 @@
+<div id="printBill">
+
+
+  <!doctype html>
+  <html>
+  <head>
+    <meta charset="utf-8">
+    <title>A simple, clean, and responsive HTML invoice template</title>
+  </head>
+
+  <body style="font-family: 'Fake Receipt'">
+  <div class="invoice-box"
+       style="font-size: 14px;line-height: 20px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #555;">
+    <table cellpadding="0" cellspacing="0" style="width: 100%;line-height: inherit;text-align: left;">
+      <tr class="top">
+        <td colspan="5" style="padding: 5px;vertical-align: top;text-align: left;">
+          <table style="width: 100%;line-height: inherit;text-align: left;">
+            <tr>
+              <td class="title"
+                  style="vertical-align: bottom;text-align: left;padding-left: 5px;font-size: 28px;line-height: 45px;color: #333;">
+                <div>
+                  S.S MEDICOS
+                </div>
+
+              </td>
+
+              <td style="padding: 5px;vertical-align: top;text-align: right;">
+                Invoice #: {{cart?.invoice_number}}<br>
+                Created: {{cart?.created_on | date: 'short'}}<br>
+                Due: {{cart?.created_on | date: 'short'}}
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <tr class="information">
+        <td colspan="5" style="padding: 5px;vertical-align: top;text-align: left;">
+          <table style="width: 100%;line-height: inherit;text-align: left;">
+            <tr>
+              <td style="padding: 5px;vertical-align: top;text-align: left;padding-bottom: 40px;">
+                Shop No 7, Sector III<br>
+                R.K. Puram<br>
+                New Delhi - 110022
+              </td>
+
+              <td style="padding: 5px;vertical-align: top;text-align: right;padding-bottom: 40px;">
+                  <span *ngIf="cart?.customer?.name">
+                  Patient: {{cart?.customer?.name}}<br>
+                    {{cart?.customer?.number}}<br>
+                  </span>
+                <span *ngIf="cart?.doctor">
+                  DR. {{cart?.doctor}}
+                  </span>
+
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+
+      <tr class="heading">
+        <td
+          style="padding: 5px;vertical-align: top;text-align: left;background: #eee;border-bottom: 1px solid #ddd;font-weight: bold;">
+          Item
+        </td>
+        <td
+          style="padding: 5px;vertical-align: top;text-align: right;background: #eee;border-bottom: 1px solid #ddd;font-weight: bold;">
+          Qty
+        </td>
+        <td
+          style="padding: 5px;vertical-align: top;text-align: right;background: #eee;border-bottom: 1px solid #ddd;font-weight: bold;">
+          Batch
+        </td>
+        <td
+          style="padding: 5px;vertical-align: top;text-align: right;background: #eee;border-bottom: 1px solid #ddd;font-weight: bold;">
+          Rate
+        </td>
+        <td
+          style="padding: 5px;vertical-align: top;text-align: right;background: #eee;border-bottom: 1px solid #ddd;font-weight: bold;">
+          Amount
+        </td>
+      </tr>
+
+      <tr class="item" *ngFor="let item of cart?.items">
+        <td style="padding: 5px;vertical-align: top;text-align: left;border-bottom: 1px solid #eee;">
+          {{item.name}}
+        </td>
+        <td style="padding: 5px;vertical-align: top;text-align: right;border-bottom: 1px solid #eee;">
+          x{{item.quantity}}
+        </td>
+        <td style="padding: 5px;vertical-align: top;text-align: right;border-bottom: 1px solid #eee;">
+          {{item.stock.batch_number}}
+        </td>
+        <td style="padding: 5px;vertical-align: top;text-align: right;border-bottom: 1px solid #eee;">
+          {{item.unit_price | currency: 'INR':'symbol':'1.1-2'}}
+        </td>
+        <td style="padding: 5px;vertical-align: top;text-align: right;border-bottom: 1px solid #eee;">
+          {{item.unit_price * item.quantity | currency: 'INR':'symbol':'1.1-2'}}
+        </td>
+      </tr>
+
+      <tr class="item">
+        <td style="padding: 5px;vertical-align: top;text-align: left;border-bottom: 1px solid #eee;font-size: 12px">
+          <i>Registered Under Composition Scheme</i>
+        </td>
+      </tr>
+
+
+      <tr class="total">
+        <td style="padding: 5px;vertical-align: top;text-align: left;"></td>
+        <td
+          style="padding: 5px;vertical-align: top;text-align: right;border-top: 2px solid #eee;font-weight: bold;"></td>
+        <td style="padding: 5px;vertical-align: top;text-align: right;"></td>
+        <td style="padding: 5px;vertical-align: top;text-align: right;"></td>
+        <td style="padding: 5px;vertical-align: top;text-align: right;">
+          Total: {{cart?.total | currency: 'INR':'symbol':'1.1-2'}}
+        </td>
+      </tr>
+
+      <tr>
+        <td style="padding: 5px;vertical-align: top;text-align: left;font-size: 12px" colspan="3">
+          <div>
+            E.& O. E.
+          </div>
+          <small style="font-size: 10px">
+            <div>All disputes are subject to Delhi Jurisdiction.</div>
+            <div>Prices of Medicines are inclusive of Taxes.</div>
+            Goods once sold will not be taken back.
+          </small>
+        </td>
+
+        <td colspan="2" style="padding: 5px;vertical-align: top;text-align: right;font-size: 12px">
+          For S.S Medicos
+        </td>
+      </tr>
+    </table>
+  </div>
+  </body>
+  </html>
+
+</div>

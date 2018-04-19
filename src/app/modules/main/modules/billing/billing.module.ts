@@ -10,15 +10,19 @@ import {ProductSearchComponent} from './components/product-search/product-search
 import {AsyncLocalStorageModule} from 'angular-async-local-storage';
 import {CartService} from './components/cart/cart-service';
 import {CustomerInfoComponent} from './components/customer-info/customer-info.component';
+import {AddStockComponent} from '../inventory/add-stock/add-stock.component';
+import {PrintBillComponent} from '../../common/components/print-bill/print-bill.component';
 
 @NgModule({
   imports: [
     SharedCommonModule,
     BillingRoutingModule,
-    AsyncLocalStorageModule
+    AsyncLocalStorageModule,
   ],
   providers: [CartService],
-  declarations: [BillingComponent, CartComponent, ProductListComponent, ProductDetailComponent, ProductSearchComponent, CustomerInfoComponent]
+  entryComponents: [AddStockComponent],
+  declarations: [BillingComponent, CartComponent, ProductListComponent, ProductDetailComponent,
+    ProductSearchComponent, CustomerInfoComponent, AddStockComponent, PrintBillComponent]
 })
 export class BillingModule {
 }

@@ -5,6 +5,8 @@ import {Item} from '../../../../common/models/item';
 import {Stock} from '../../../../common/models/stock';
 import {ItemTax} from '../../../../common/models/itemtax';
 import {AsyncLocalStorage} from 'angular-async-local-storage';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Observable} from 'rxjs/Observable';
 
 function round(value, precision, roundOff?: boolean) {
   const multiplier = Math.pow(10, precision || 0);
@@ -20,6 +22,21 @@ export class CartService {
   }
 
   _cart: Order;
+  private _cart$$ = new BehaviorSubject<Order>(null);
+
+  get cart$$(): Observable<Order> {
+    return this._cart$$.asObservable();
+  }
+
+  get cart$(): Promise<Order> {
+    return new Promise<Order>(resolve => {
+      this.cart ? resolve(this.cart) : this.localStorage.getItem('cart').subscribe(res => resolve(res),
+        () => {
+          this.newCart();
+          resolve(this.cart);
+        });
+    });
+  }
 
   get cart(): Order {
     return this._cart;
@@ -28,6 +45,7 @@ export class CartService {
   set cart(cart: Order) {
     this._cart = cart;
     this.localStorage.setItem('cart', cart).subscribe();
+    this._cart$$.next(cart);
   }
 
   static createItem(product: Product, stock: Stock): Item {
@@ -36,6 +54,7 @@ export class CartService {
     item.stock_id = stock.id;
     item.stock = stock;
     item.name = product.name;
+    item.stock_adjust = false;
     item.quantity = 1;
     item.unit_price = stock.selling_amount;
     item.taxes = [];
@@ -46,12 +65,27 @@ export class CartService {
     return item;
   }
 
+  newCart() {
+    this.cart = <Order>{items: [], sub_total: 0, total: 0, discount_value: 0};
+  }
+
   async init() {
     this.cart = await this.localStorage.getItem('cart').toPromise();
     if (!this.cart) {
       this.cart = <Order>{items: [], sub_total: 0, total: 0, discount_value: 0};
     }
     console.log(this.cart);
+  }
+
+  updateItem(item: Item) {
+    const index = this.cart.items.findIndex(cartItem => cartItem.stock_id === item.stock_id && cartItem.product_id === item.product_id);
+    if (item.quantity) {
+      this.cart.items[index] = item;
+    } else {
+      this.cart.items.splice(index, 1);
+    }
+
+    return this.calcTotal();
   }
 
   calcTotal(): Order {

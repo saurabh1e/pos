@@ -2,7 +2,7 @@
   <mat-form-field floatPlaceholder="never">
     <input placeholder="Search" aria-label="search" [matAutocomplete]="auto"
            [formControl]="searchCtrl" matInput>
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="addProduct($event)"
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelect($event)"
     >
       <mat-option *ngFor="let product of (filteredProducts | async)" [value]="product"
       >

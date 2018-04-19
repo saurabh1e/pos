@@ -8,6 +8,8 @@ export interface Item {
   product_id: number;
   discount: number;
   unit_price: number;
+  stock_adjust: boolean;
+
   stock: Stock;
   taxes: ItemTax[];
 }

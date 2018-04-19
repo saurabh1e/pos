@@ -3,6 +3,7 @@ export interface Stock {
   purchase_amount: number;
   selling_amount: number;
   units_purchased: number;
+  units_sold: number;
   batch_number: number;
   expiry_date: Date;
   is_sold: boolean;
